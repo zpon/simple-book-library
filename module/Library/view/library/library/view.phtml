@@ -1,0 +1,60 @@
+<?php
+$this->headTitle("View book: " . $book->getTitle());
+?>
+<h1><?php echo $this->escapeHtml($book->getTitle()); ?></h1>
+
+<div class="btn-toolbar">
+    <div class="btn-group">
+        <a class="btn" href="<? echo $this->url('library', array('action' => 'edit', 'id' => $book->getId())); ?>"><i class="icon-pencil"></i> Edit</a>
+        <a class="btn" id="book-delete" href="javascript:void(0);" data-href="<? echo $this->url('library', array('action' => 'delete', 'id' => $book->getId())); ?>"><i class="icon-trash"></i> Delete</a>
+    </div>
+</div>
+
+<dl class="dl-horizontal">
+    <dt>Author</dt><dd><? echo $book->getAuthor() ?><dd>
+    <dt>Year</dt><dd><? echo $book->getYear() ?><br/>
+    <dt>ISBN</dt><dd><? echo $book->getIsbn() ?><br/>
+    <dt>Summary</dt><dd>
+        <div id="summary_wrap" style="position: relative">
+            <div id="summary" style="overflow: hidden;"><? echo nl2br($book->getSummary()) ? : "<i>No summary</i>"; ?></div>
+            <div id="summary_fade" class="fade-overlay"></div>
+        </div>
+        <div id="summary_link"><a id="summary_toggle" href="javascript:void(0);">Show more...</a></div>
+    </dd>
+
+    <h2>Copies</h2>
+    <a href="<? echo $this->url('bookcopy', array('action' => 'add', 'id' => $book->getId())); ?>" class="btn"><span class="icon-plus"></span> Add copy</a>
+    <a href="javascript:void(0);" id="toggle-lost-books">Show lost books</a>
+    <br/><br/>
+    <? if ($copies->count() > 0): ?>
+        <table class="table" id="copy-tables">
+            <tr><th>Condition</th><th>Loaned out to</th><th>Location</th><th>Owner</th><th>Additional id</th><th>Action</th></tr>
+            <? foreach ($copies as $index => $copy): ?>
+                <tr data-lost="<? echo $copy->isLost() ?>">
+                    <td><?= $copy->getCondition(); ?><? echo $copy->isLost() ? " (Lost)" : ""; ?></td>
+                    <td><? echo $copy->getLoanOutTo() ? "<abbr href=\"javascript:void(0);\" title=\"" . $copy->getLoanObject()->getStart() . "\">" . $copy->getLoanOutTo() . "</abbr>" : "<i>Home</i>"; ?></td>
+                    <td><? echo $copy->getLocationName() ? : "<i>Not set</i>"; ?></td>
+                    <td><?= $copy->getOwnerName() ? : "<i>Not set</i>"; ?></td>
+                    <td><? echo $copy->getAdditionalId() ? : "<i>Not set</i>"; ?></td>
+                    <td>
+                        <?
+                        $loan_action = "loan";
+                        $loan_label = "Loan";
+                        $loan = $copy->getLoanOutTo();
+                        if (!empty($loan)) {
+                            $loan_action = "return";
+                            $loan_label = "Return book";
+                        }
+                        ?>
+                        <a href="<? echo $this->url('bookcopy', array('action' => $loan_action, 'id' => $copy->getId())); ?>"><? echo $loan_label; ?></a> |
+                        <a href="<? echo $this->url('bookcopy', array('action' => 'edit', 'id' => $copy->getId())); ?>">Edit</a> |
+                        <a href="javascript:void(0);" data-additional-id="<? echo $copy->getAdditionalId(); ?>" data-href="<? echo $this->url('bookcopy', array('action' => 'delete', 'id' => $copy->getId())); ?>" class="delete-copy" data-copy-id="<? echo $copy->getId(); ?>">Delete</a>
+                    </td>
+                </tr>
+            <? endforeach; ?>
+        </table>
+    <? else: ?>
+        <div class="info">No copies of this book has been added</div>
+    <? endif; ?>
+
+    <? echo $this->deleteHelper(); ?>

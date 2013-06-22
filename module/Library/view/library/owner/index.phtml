@@ -1,0 +1,26 @@
+<?php
+$title = "Owners";
+$this->headTitle($title);
+?>
+<h1><? echo $this->escapeHtml($title); ?></h1>
+Books can be associated with an owner, e.g. a book may be lend to the library by some other owner.<br/><br/>
+
+<a class="btn" href="/owner/add">Add owner</a><br/><br/>
+<? if ($owners->count() > 0): ?>
+    <table class="table">
+        <tr><th>Owner</th><th>Action</th></tr>
+        <? foreach ($owners as $owner): ?>
+            <tr>
+                <td><? echo $owner->getName(); ?></td>
+                <td>
+                    <a href="/owner/edit/<? echo $owner->getId(); ?>">Edit</a> | 
+                    <a class="delete-owner" href="javascript:void(0);" data-href="/owner/delete/<? echo $owner->getId(); ?>">delete</a>
+                </td>
+            </tr>
+        <? endforeach; ?>
+    </table>
+<? else: ?>
+    <div class="info">No owners has been added</div>
+<? endif; ?>
+
+<? echo $this->deleteHelper(); ?>

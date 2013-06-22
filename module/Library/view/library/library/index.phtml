@@ -1,0 +1,27 @@
+<?php
+$title = "Books";
+$this->headTitle($title);
+?>
+<h1><? echo $this->escapeHtml($title); ?></h1>
+
+<a href="<? echo $this->url('library', array('action' => 'add')); ?>" class="btn"><span class="icon-plus"></span> Add new book</a><br/><br/>
+
+<?php if ($books->count() > 0): ?>
+    <table class="table">
+        <tr>
+            <th>Book</th><th>Action</th>
+        </tr>
+
+        <?php foreach ($books as $book): ?>
+            <tr>
+                <td><a href="<? echo $this->url('library', array('action' => 'view', 'id' => $book->getId())); ?>"><b><?php echo $book->getTitle() ?></b></a> by <i><?php echo $book->getAuthor() ?></i> (<? echo $book->getCopiesCount(); ?>)</td>
+                <td><a href="<? echo $this->url('library', array('action' => 'edit', 'id' => $book->getId())); ?>">Edit</a> | 
+                    <a href="javascript:void(0);" class="delete-book" data-href="delete/<? echo $book->getId(); ?>">Delete</a></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+<? else: ?>
+    <div class="info">No books has been added</div>
+<?php endif; ?>
+
+<? echo $this->deleteHelper(); ?>

@@ -1,0 +1,31 @@
+<?php
+// module/Album/view/album/album/add.phtml:
+
+$title = 'Add new book';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('library', array('action' => 'add')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+echo $this->formRow($form->get('title'), 'prepend');
+echo $this->formRow($form->get('author'), 'prepend');
+echo $this->formRow($form->get('year'));
+
+echo $this->formLabel()->openTag();
+?><span><? echo $form->get('isbn')->getLabel(); ?></span><?
+echo $this->formElement($form->get('isbn'));
+?><a href="javascript:void(0);" class="btn" id="add-isbn-lookup" style="margin-bottom: 10px; margin-left: 10px;">Lookup book</a>
+<div class="further-info" style="display:none;">bla</div>
+    <?
+echo $this->formElementErrors($form->get('isbn'));
+echo $this->formLabel()->closeTag();
+echo $this->formRow($form->get('summary'));
+
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();
+?>
