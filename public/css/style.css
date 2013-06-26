@@ -4,7 +4,7 @@ html, body {
 
 #content-parent {
     min-height: 100%;
-    margin: 0px auto -31px; /* foother height + 1px border */
+    margin: 0px auto -61px; /* foother height + 1px border */
 }
 
 #content {
@@ -17,16 +17,23 @@ html, body {
 
 #footer {
     border-top: 1px solid #C3D5DE;
-    background-color: #d9edf7;
+    background-color: #F0F0F0;
     text-align: center;
-    height: 30px;
+    height: 60px;
+    color: #606060;
 }
 
 #footer p {
     font-size: 85%;
     margin: 0px;
-    height: 30px;
-    line-height: 30px;
+}
+
+#footer p.own-credits {
+    margin-top: 5px;
+}
+
+#footer p.credits {
+    padding-top: 5px;
 }
 
 hr.footer {

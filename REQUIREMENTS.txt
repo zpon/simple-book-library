@@ -1,0 +1,2 @@
+php5-intl
+zfc-base for AbstractDbMapper (howto: http://stackoverflow.com/questions/12594419/how-to-install-zfcbase-zend-framework-2-without-git)
