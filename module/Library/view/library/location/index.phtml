@@ -5,7 +5,7 @@ $this->headTitle($title);
 <h1><? echo $this->escapeHtml($title); ?></h1>
 Every copy of a book is related to a location, i.e. the room, building or other definition of where the book is located.<br/><br/>
 
-<a class="btn" href="/location/add">Add location</a><br/><br/>
+<a class="btn" href="/location/add"><span class="icon-plus"></span> Add location</a><br/><br/>
 <? if ($locations->count() > 0): ?>
     <table class="table">
         <tr><th>Location</th><th>Action</th></tr>

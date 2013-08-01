@@ -27,7 +27,17 @@ return array(
                 'options' => array(
                     'route' => '/location',
                     'defaults' => array(
-                        'controller' => 'Library\Controller\Locatio',
+                        'controller' => 'Library\Controller\Location',
+                        'action' => 'index',
+                    ),
+                ),
+            ),
+            'link_owner' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route' => '/owner',
+                    'defaults' => array(
+                        'controller' => 'Library\Controller\Owner',
                         'action' => 'index',
                     ),
                 ),
@@ -98,8 +108,13 @@ return array(
                 'route' => 'link_library',
             ),
             array(
-                'label' => 'Locations',
+                'label' => 'Book Locations',
                 'route' => 'link_location',
+            ),
+            array(
+                'label' => 'Book Owners',
+                'title' => 'Book owners',
+                'route' => 'link_owner',
             ),
         ),
     ),
