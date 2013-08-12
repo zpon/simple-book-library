@@ -5,11 +5,8 @@ $this->headTitle($title);
 <h1><? echo $this->escapeHtml($title); ?></h1>
 Books can be associated with an owner, e.g. a book may be lend to the library by some other owner.<br/><br/>
 
-<<<<<<< HEAD
 <a class="btn" href="/owner/add"><span class="icon-plus"></span> Add owner</a><br/><br/>
-=======
-<a class="btn" href="/owner/add">Add owner</a><br/><br/>
->>>>>>> 5a2bdc7b04f6ea0a0c1e8c9ab65b3da73eb01ab4
+
 <? if ($owners->count() > 0): ?>
     <table class="table">
         <tr><th>Owner</th><th>Action</th></tr>

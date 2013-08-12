@@ -100,28 +100,9 @@ return array(
             ),
         ),
     ),
-    'navigation' => array(
-        'default' => array(
-            array(
-                'label' => 'Books',
-                'title' => 'Library overview',
-                'route' => 'link_library',
-            ),
-            array(
-                'label' => 'Book Locations',
-                'route' => 'link_location',
-            ),
-            array(
-                'label' => 'Book Owners',
-                'title' => 'Book owners',
-                'route' => 'link_owner',
-            ),
-        ),
-    ),
     'service_manager' => array(
         'factories' => array(
             'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
-            'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
         ),
     ),
     'translator' => array(

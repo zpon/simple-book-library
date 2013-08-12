@@ -21,8 +21,26 @@ return array(
     ),
     'service_manager' => array(
         'factories' => array(
-            'Zend\Db\Adapter\Adapter'
-            => 'Zend\Db\Adapter\AdapterServiceFactory',
+            'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
+            'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
+        ),
+    ),
+    'navigation' => array(
+        'default' => array(
+            array(
+                'label' => 'Books',
+                'title' => 'Library overview',
+                'route' => 'link_library',
+            ),
+            array(
+                'label' => 'Book Locations',
+                'route' => 'link_location',
+            ),
+            array(
+                'label' => 'Book Owners',
+                'title' => 'Book owners',
+                'route' => 'link_owner',
+            ),
         ),
     ),
 );

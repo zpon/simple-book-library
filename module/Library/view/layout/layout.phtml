@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <?php echo $this->headTitle($this->translate('Simple Book Library'))->setSeparator(' - ')->setAutoEscape(false) ?>
-
+<? echo "<!-- action: \"" . $this->route . "\" -->"; ?>
         <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
 
         <!-- Le styles -->
@@ -37,11 +37,7 @@
                             <a class="brand">Library</a>
                             <div class="nav-collapse collapse">
                                 <?php
-                                echo $this->navigation('navigation')->menu()
-                                        ->setMinDepth(0)
-                                        ->setMaxDepth(1)
-                                        ->setRenderParents(true)
-                                        ->setUlClass('nav');
+                                echo $this->navigation('navigation')->menu()->setUlClass('nav');
                                 ?>
                             </div>
                             <!--
